@@ -20,7 +20,7 @@ def load_env_data(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
     except FileNotFoundError:
-        print(f"❌ Error: The file '{file_path}' was not found.")
+        print(f"Error: The file '{file_path}' was not found.")
         return None
 
     pattern = re.compile(r'^\s*([\w.-]+)\s*=\s*(.*)\s*$', re.MULTILINE)
@@ -38,7 +38,7 @@ def load_env_data(file_path):
                     'data': list_data
                 }
             except json.JSONDecodeError:
-                print(f"⚠️ Warning: Could not parse JSON for key '{key}'. Storing as string.")
+                print(f"Warning: Could not parse JSON for key '{key}'. Storing as string.")
                 config_vars_list.append({key: value_str})
         else:
             try:
@@ -57,7 +57,7 @@ def load_env_data(file_path):
         print("No data sets found in the file.")
         return None
         
-    print(f"✅ Successfully loaded {len(all_data)} data sets.")
+    print(f"Successfully loaded {len(all_data)} data sets.")
     return all_data
 
 def save_env_data(file_path, all_data):
@@ -83,10 +83,10 @@ def save_env_data(file_path, all_data):
     try:
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(new_content.strip() + '\n')
-        print(f"💾 All changes have been successfully saved to '{file_path}'.")
+        print(f"All changes have been successfully saved to '{file_path}'.")
         return True
     except Exception as e:
-        print(f"❌ Error saving file: {e}")
+        print(f"Error saving file: {e}")
         return False
 
 def find_item_in_list(data_list, key_to_find):
@@ -113,7 +113,7 @@ def print_menu(active_set=None, id_key_name=None):
     """Displays the main menu of commands."""
     print("\n--- Interactive Config Editor ---")
     if active_set:
-        print(f"✅ Active list: '{active_set}'.")
+        print(f"Active list: '{active_set}'.")
         if id_key_name:
             print(f"   Use the '{id_key_name}' to identify items (e.g., show <{id_key_name}>).")
     print("\nCommands:")
